@@ -6,6 +6,7 @@
 		// Initialize global variables
 		var ArticlesListController,
 			scope,
+			articles,
 			$httpBackend,
 			$stateParams,
 			$location;
@@ -46,7 +47,8 @@
 
 			// Initialize the Articles controller.
 			ArticlesListController = $controller('ArticlesListController', {
-				$scope: scope
+				$scope: scope,
+				articles: articles
 			});
 		}));
 

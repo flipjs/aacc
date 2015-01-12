@@ -75,7 +75,7 @@ var UserSchema = new Schema({
 	roles: {
 		type: [{
 			type: String,
-			enum: ['user', 'admin']
+			enum: ['user', 'admin', 'member', 'committee', 'judge']
 		}],
 		default: ['user']
 	},
@@ -92,7 +92,86 @@ var UserSchema = new Schema({
 	},
   	resetPasswordExpires: {
   		type: Date
-  	}
+  	},
+
+
+
+	// AACC-specific data
+
+	// needs verification after creating a/c
+	verified: {
+		type: Boolean, 
+		required: true, 
+		default: false
+	},
+	// 3 wrong password attempts
+	disabled: {
+		type: Boolean, 
+		required: true, 
+		default: false
+	},
+	// deactivated by admin, judges who are not members get deactivated after judging
+	deactivated: {
+		type: Boolean, 
+		required: true, 
+		default: false
+	},
+	loginAttempts: {
+		type: Number, 
+		required: true, 
+		default: 0
+	},
+	lockUntil: {
+		type: Number, 
+		required: true, 
+		default: 0
+	},
+	address1: String,
+	address2: String,
+	address3: String,
+	city: String,
+	state: String,
+	// not necessary but place it here so we could have pulldown menus
+	country: String,
+	zipcode: String,
+	// website of photos
+	website: String,
+	facebook: {},
+	twitter: {},
+	github: {},
+	google: {},
+	admin: {
+		type: Boolean, 
+		required: true, 
+		default: false
+	},
+	member: {
+		type: Boolean, 
+		required: true, 
+		default: false
+	},
+	contestc: {
+		type: Boolean, 
+		required: true, 
+		default: false
+	},
+	judge: {
+		type: Boolean, 
+		required: true, 
+		default: false
+	},
+	// active, loa
+	memberStatus: String,
+	memberID: String,
+	logs: [{ 
+		updates: String,
+		_userId: {
+			type: Schema.Types.ObjectId,
+			required:true,
+			ref: 'Yuser' 
+		},
+		date: Date
+	}]
 });
 
 /**

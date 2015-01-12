@@ -4,22 +4,16 @@ void (function() {
 	angular.module('articles').controller('ArticlesViewController', ArticlesViewController)
 	
 	/* ngInject */
-	function ArticlesViewController($scope, $stateParams, $location, Authentication, Articles) {
+	function ArticlesViewController($scope, $location, Authentication, article) {
 
 		$scope.ctrl = {}
 		$scope.ctrl.ctrlName = 'ArticlesViewController'
 
 		$scope.ctrl.authentication = Authentication
-		$scope.ctrl.findOne = findOne
+		$scope.ctrl.article = article
 		$scope.ctrl.remove = remove
 
-		activate()
-
 		///////////////////////////////////////////
-
-		function activate() {
-			$scope.ctrl.findOne()
-		}
 
 		function remove(article) {
 			if (article) {
@@ -35,12 +29,6 @@ void (function() {
 					$location.path('articles')
 				})
 			}
-		}
-
-		function findOne() {
-			$scope.ctrl.article = Articles.get({
-				articleId: $stateParams.articleId
-			})
 		}
 	}
 })()

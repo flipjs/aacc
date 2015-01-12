@@ -10,7 +10,13 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
 		$stateProvider.
 		state('home', {
 			url: '/',
-			templateUrl: 'modules/core/views/home.client.view.html'
+			templateUrl: 'modules/articles/views/list-articles.client.view.html',
+			controller: 'ArticlesListController',
+			resolve: {
+				articles: /* ngInject */ function(Articles) {
+					return Articles.query().$promise
+				}
+			}
 		});
 	}
 ]);
