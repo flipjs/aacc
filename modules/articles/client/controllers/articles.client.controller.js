@@ -1,58 +1,73 @@
-'use strict';
+void (function() {
+	'use strict'
 
-angular.module('articles').controller('ArticlesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Articles',
-	function($scope, $stateParams, $location, Authentication, Articles) {
-		$scope.authentication = Authentication;
+	angular.module('articles').controller('ArticlesController', ArticlesController)
+	
+	/* ngInject */
+	function ArticlesController($scope, $stateParams, $location, Authentication, Articles) {
 
-		$scope.create = function() {
+		$scope.ctrl = {}
+		$scope.ctrl.ctrlName = 'ArticlesController'
+
+		$scope.ctrl.authentication = Authentication
+		$scope.ctrl.create = create
+		$scope.ctrl.find = find
+		$scope.ctrl.findOne = findOne
+		$scope.ctrl.remove = remove
+		$scope.ctrl.update = update
+
+
+		///////////////////////////////////////////
+
+		function create() {
 			var article = new Articles({
-				title: this.title,
-				content: this.content
-			});
+				title: $scope.ctrl.title,
+				content: $scope.ctrl.content
+			})
 			article.$save(function(response) {
-				$location.path('articles/' + response._id);
+				$location.path('articles/' + response._id)
 
-				$scope.title = '';
-				$scope.content = '';
+				$scope.ctrl.title = ''
+				$scope.ctrl.content = ''
 			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
-		};
+				$scope.ctrl.error = errorResponse.data.message
+			})
+		}
 
-		$scope.remove = function(article) {
+		function remove(article) {
 			if (article) {
-				article.$remove();
+				article.$remove()
 
-				for (var i in $scope.articles) {
-					if ($scope.articles[i] === article) {
-						$scope.articles.splice(i, 1);
+				for (var i in $scope.ctrl.articles) {
+					if ($scope.ctrl.articles[i] === article) {
+						$scope.ctrl.articles.splice(i, 1)
 					}
 				}
 			} else {
-				$scope.article.$remove(function() {
-					$location.path('articles');
-				});
+				$scope.ctrl.article.$remove(function() {
+					$location.path('articles')
+				})
 			}
-		};
+		}
 
-		$scope.update = function() {
-			var article = $scope.article;
+		function update() {
+			var article = $scope.ctrl.article
 
 			article.$update(function() {
-				$location.path('articles/' + article._id);
+				$location.path('articles/' + article._id)
 			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
-		};
+				$scope.ctrl.error = errorResponse.data.message
+			})
+		}
 
-		$scope.find = function() {
-			$scope.articles = Articles.query();
-		};
+		function find() {
+			$scope.ctrl.articles = Articles.query()
+		}
 
-		$scope.findOne = function() {
-			$scope.article = Articles.get({
+		function findOne() {
+			$scope.ctrl.article = Articles.get({
 				articleId: $stateParams.articleId
-			});
-		};
+			})
+		}
 	}
-]);
+})()

@@ -1,14 +1,17 @@
-'use strict';
+void (function() {
+	'use strict'
 
-//Articles service used for communicating with the articles REST endpoints
-angular.module('articles').factory('Articles', ['$resource',
-	function($resource) {
+	angular.module('articles').factory('Articles', Articles)
+
+	/* ngInject */
+	function Articles($resource) {
 		return $resource('api/articles/:articleId', {
 			articleId: '@_id'
 		}, {
 			update: {
 				method: 'PUT'
 			}
-		});
+		})
 	}
-]);
+})()
+
