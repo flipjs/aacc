@@ -16,7 +16,14 @@ angular.module('users').config(['$stateProvider',
 			}).
 			state('settings.address', {
 				url: '/address',
-				templateUrl: 'modules/users/views/settings/edit-address.client.view.html'
+				templateUrl: 'modules/users/views/settings/edit-address.client.view.html',
+				controller: 'EditAddressController',
+				resolve: {
+					generator: /* ngInject */ function(CountryStateLookup) {
+						CountryStateLookup.fetchCountryStateData()
+						// nothing to return, resolve data in CountryStateLookup
+					}
+				}
 			}).
 			state('settings.password', {
 				url: '/password',

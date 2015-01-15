@@ -16,6 +16,10 @@ module.exports = function(app) {
 	app.route('/api/users/password').post(users.changePassword);
 	app.route('/api/users/picture').post(users.changeProfilePicture);
 
+	app.route('/api/lookup/states').get(function(req, res) {
+		res.json(require('../models/states.json'))
+	})
+
 	// Finish by binding the user middleware
 	app.param('userId', users.userByID);
 };
