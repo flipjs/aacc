@@ -35,12 +35,17 @@ void (function() {
 		}
 
 		function getStatesOf(countryName) {
-			var idx = countryStateData.map(function(data) {
-				return data.country.toLowerCase()
+			var stateList = []
+
+			countryStateData.some(function(data, idx) {
+				if (data.country.toLowerCase() === countryName.toLowerCase()) {
+					stateList = countryStateData[idx].states.split('|')
+					return true
+				}
+				return false
 			})
-			.indexOf(countryName.toLowerCase())
 			
-			return countryStateData[idx].states.split('|')
+			return stateList
 		}
 	}
 
