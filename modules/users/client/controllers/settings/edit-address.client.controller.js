@@ -6,12 +6,17 @@ void (function() {
 
 	/* ngInject */
 	function EditAddressController($scope, $http, $location, Users, Authentication, CountryStateLookup) {
-		$scope.countries = CountryStateLookup.countries
-		$scope.states = []
-		$scope.updateUserProfile = updateUserProfile
 		$scope.user = Authentication.user
 
-		// Update a user profile
+		$scope.countries = CountryStateLookup.countries
+		$scope.states = CountryStateLookup.getStatesOf($scope.user.country)
+		$scope.updateStates = updateStates
+		$scope.updateUserProfile = updateUserProfile
+
+		function updateStates(countryName) {
+			$scope.states = CountryStateLookup.getStatesOf(countryName)
+		}
+
 		function updateUserProfile(isValid) {
 			if (isValid){
 				$scope.success = $scope.error = null
@@ -26,10 +31,6 @@ void (function() {
 			} else {
 				$scope.submitted = true
 			}
-		}
-
-		function getStatesOf(countryName) {
-			return CountryStateLookup.getStatesOf(countryName)
 		}
 	}
 	

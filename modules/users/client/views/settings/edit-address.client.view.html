@@ -17,11 +17,22 @@
 				</div>
 				<div class="form-group">
 					<label for="country">Country</label>
-					<input type="text" id="country" name="country" class="form-control" data-ng-model="user.country" placeholder="Country">
+					<data-ui-select data-ng-model="user.country" data-ng-disabled="disabled" data-ng-change="updateStates(user.country)" style="min-width: 300px;">
+						<data-ui-select-match placeholder="Country">{{ $select.selected.name }}</data-ui-select-match>
+						<data-ui-select-choices repeat="country.name as country in countries | filter: $select.search">
+							{{ country.name }}
+						</data-ui-select-choices>
+					</data-ui-select>
 				</div>
 				<div class="form-group">
 					<label for="state">State</label>
-					<input type="text" id="state" name="state" class="form-control" data-ng-model="user.state" placeholder="State / City / County / Province / Region">
+					<data-ui-select data-ng-model="user.state" data-ng-disabled="disabled" style="min-width: 300px;">
+						<data-ui-select-match placeholder="State / City / County / Province / Region">{{ $select.selected.name }}</data-ui-select-match>
+						<data-ui-select-choices repeat="state.name as state in states | filter: $select.search">
+							{{ state.name }}
+						</data-ui-select-choices>
+					</data-ui-select>
+					<!-- <input type="text" id="state" name="state" class="form&#45;control" data&#45;ng&#45;model="user.state" placeholder="State / City / County / Province / Region"> -->
 				</div>
 				<div class="form-group">
 					<label for="zipcode">ZIP Code</label>

@@ -30,7 +30,7 @@ void (function() {
 
 		function generateCountries() {
 			angular.forEach(countryStateData, function(data) {
-				this.push(data.country)
+				this.push({ name: data.country })
 			}, service.countries)
 		}
 
@@ -39,7 +39,9 @@ void (function() {
 
 			countryStateData.some(function(data, idx) {
 				if (data.country.toLowerCase() === countryName.toLowerCase()) {
-					stateList = countryStateData[idx].states.split('|')
+					stateList = countryStateData[idx].states.split('|').map(function(state) {
+						return { name: state }
+					})
 					return true
 				}
 				return false
