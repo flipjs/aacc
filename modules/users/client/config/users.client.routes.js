@@ -19,9 +19,13 @@ angular.module('users').config(['$stateProvider',
 				templateUrl: 'modules/users/views/settings/edit-address.client.view.html',
 				controller: 'EditAddressController',
 				resolve: {
-					generator: /* ngInject */ function(CountryStateLookup) {
-						CountryStateLookup.fetchCountryStateData()
-						// nothing to return, resolve data in CountryStateLookup
+					countryStateData: /* ngInject */ function(CountryStateLookup) {
+						return CountryStateLookup.getCountryStateData()
+							// .then(function(data) {
+							// 	return data
+							// }, function(error) {
+							// 	// TODO: send error message to ErrorHandler
+							// })
 					}
 				}
 			}).

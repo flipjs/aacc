@@ -129,7 +129,7 @@ var UserSchema = new Schema({
 	address1: String,
 	address2: String,
 	address3: String,
-	city: String,
+	// city: String,
 	state: String,
 	// not necessary but place it here so we could have pulldown menus
 	country: String,
@@ -140,26 +140,26 @@ var UserSchema = new Schema({
 	twitter: {},
 	github: {},
 	google: {},
-	admin: {
-		type: Boolean, 
-		required: true, 
-		default: false
-	},
-	member: {
-		type: Boolean, 
-		required: true, 
-		default: false
-	},
-	contestc: {
-		type: Boolean, 
-		required: true, 
-		default: false
-	},
-	judge: {
-		type: Boolean, 
-		required: true, 
-		default: false
-	},
+	// admin: {
+	// 	type: Boolean, 
+	// 	required: true, 
+	// 	default: false
+	// },
+	// member: {
+	// 	type: Boolean, 
+	// 	required: true, 
+	// 	default: false
+	// },
+	// contestc: {
+	// 	type: Boolean, 
+	// 	required: true, 
+	// 	default: false
+	// },
+	// judge: {
+	// 	type: Boolean, 
+	// 	required: true, 
+	// 	default: false
+	// },
 	// active, loa
 	memberStatus: String,
 	memberID: String,
