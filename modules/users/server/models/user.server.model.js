@@ -140,26 +140,26 @@ var UserSchema = new Schema({
 	twitter: {},
 	github: {},
 	google: {},
-	// admin: {
-	// 	type: Boolean, 
-	// 	required: true, 
-	// 	default: false
-	// },
-	// member: {
-	// 	type: Boolean, 
-	// 	required: true, 
-	// 	default: false
-	// },
-	// contestc: {
-	// 	type: Boolean, 
-	// 	required: true, 
-	// 	default: false
-	// },
-	// judge: {
-	// 	type: Boolean, 
-	// 	required: true, 
-	// 	default: false
-	// },
+	admin: {
+		type: Boolean, 
+		required: true, 
+		default: false
+	},
+	member: {
+		type: Boolean, 
+		required: true, 
+		default: false
+	},
+	contestc: {
+		type: Boolean, 
+		required: true, 
+		default: false
+	},
+	judge: {
+		type: Boolean, 
+		required: true, 
+		default: false
+	},
 	// active, loa
 	memberStatus: String,
 	memberID: String,

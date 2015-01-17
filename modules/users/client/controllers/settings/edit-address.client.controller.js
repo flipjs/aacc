@@ -5,9 +5,9 @@ void (function() {
 		.controller('EditAddressController', EditAddressController)
 
 	/* ngInject */
-	function EditAddressController($scope, Users, Authentication, UserDefaults, countryStateData) {
+	function EditAddressController($scope, Users, Authentication, UserDefaults, countryStateData, toaster) {
 
-		var countryStateList = countryStateData
+		var countryStateList = countryStateData || []
 
 		$scope.user = Authentication.user
 		$scope.countries = []
@@ -26,18 +26,13 @@ void (function() {
 
 			// generate lookup tables
 			generateCountryLookup()
-			$scope.states = generateStateLookup($scope.user.country)
+			generateStateLookup($scope.user.country)
 		}
 
 		function generateCountryLookup() {
 			angular.forEach(countryStateList, function(data) {
 				this.push({ name: data.country })
 			}, $scope.countries)
-		}
-
-		function updateStateLookup(countryName) {
-			$scope.user.state = ''
-			$scope.states = generateStateLookup(countryName)
 		}
 
 		function generateStateLookup(countryName) {
@@ -48,11 +43,18 @@ void (function() {
 					stateList = countryStateList[idx].states.split('|').map(function(state) {
 						return { name: state }
 					})
+					// loop breaks when true
 					return true
 				}
+				// loop continues when false
 				return false
 			})
-			return stateList
+			$scope.states = stateList
+		}
+
+		function updateStateLookup(countryName) {
+			$scope.user.state = ''
+			generateStateLookup(countryName)
 		}
 
 		function updateUserProfile(isValid) {
@@ -61,10 +63,12 @@ void (function() {
 				var user = new Users($scope.user)
 
 				user.$update(function(response) {
-					$scope.success = true
 					Authentication.user = response
+					$scope.success = true
+					toaster.success('Address saved successfully.')
 				}, function(response) {
 					$scope.error = response.data.message
+					toaster.error(response.data.message)
 				})
 			} else {
 				$scope.submitted = true

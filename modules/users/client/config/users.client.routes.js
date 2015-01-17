@@ -21,11 +21,6 @@ angular.module('users').config(['$stateProvider',
 				resolve: {
 					countryStateData: /* ngInject */ function(CountryStateLookup) {
 						return CountryStateLookup.getCountryStateData()
-							// .then(function(data) {
-							// 	return data
-							// }, function(error) {
-							// 	// TODO: send error message to ErrorHandler
-							// })
 					}
 				}
 			}).
