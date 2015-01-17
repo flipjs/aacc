@@ -7,18 +7,21 @@ module.exports = {
 				'public/lib/bootstrap/dist/css/bootstrap.css',
 				'public/lib/bootstrap/dist/css/bootstrap-theme.css',
 				'public/lib/angular-ui-select/dist/select.css',
-				'public/lib/angularjs-toaster/toaster.css'
+				'public/lib/angularjs-toaster/toaster.css',
+				'public/lib/angular-loading-bar/build/loading-bar.css'
 			],
 			js: [
 				'public/lib/angular/angular.js',
 				'public/lib/angular-resource/angular-resource.js',
 				'public/lib/angular-animate/angular-animate.js',
+				'public/lib/angular-sanitize/angular-sanitize.js',
 				'public/lib/angular-ui-router/release/angular-ui-router.js',
 				'public/lib/angular-ui-utils/ui-utils.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
 				'public/lib/angular-file-upload/angular-file-upload.js',
 				'public/lib/angular-ui-select/dist/select.js',
-				'public/lib/angularjs-toaster/toaster.js'
+				'public/lib/angularjs-toaster/toaster.js',
+				'public/lib/angular-loading-bar/build/loading-bar.js'
 			],
 			tests: ['public/lib/angular-mocks/angular-mocks.js']
 		},

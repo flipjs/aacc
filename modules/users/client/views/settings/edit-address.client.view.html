@@ -6,41 +6,41 @@
 
 				<div class="form-group">
 					<label for="address1">Address 1</label>
-					<input type="text" id="address1" name="address1" class="form-control" data-ng-model="user.address1" placeholder="Address Line 1" style="min-width: 300px;">
+					<input type="text" id="address1" name="address1" class="form-control aacc-select-min-width" data-ng-model="user.address1" placeholder="Address Line 1">
 				</div>
 				<div class="form-group">
 					<label for="address2">Address 2</label>
-					<input type="text" id="address2" name="address2" class="form-control" data-ng-model="user.address2" placeholder="Address Line 2" style="min-width: 300px;">
+					<input type="text" id="address2" name="address2" class="form-control aacc-select-min-width" data-ng-model="user.address2" placeholder="Address Line 2">
 				</div>
 				<div class="form-group">
 					<label for="address1">Address 3</label>
-					<input type="text" id="address3" name="address3" class="form-control" data-ng-model="user.address3" placeholder="Address Line 3" style="min-width: 300px;">
+					<input type="text" id="address3" name="address3" class="form-control aacc-select-min-width" data-ng-model="user.address3" placeholder="Address Line 3">
 				</div>
 				<div class="form-group">
 					<label for="country">Country</label>
-					<data-ui-select data-ng-model="user.country" data-ng-disabled="disabled" data-ng-change="updateStateLookup(user.country)" style="min-width: 300px;">
+					<data-ui-select data-ng-model="user.country" class="aacc-select-min-width" data-ng-disabled="disabled" data-ng-change="updateStateLookup(user.country)">
 						<data-ui-select-match placeholder="Country">{{ $select.selected.name }}</data-ui-select-match>
 						<data-ui-select-choices repeat="country.name as country in countries | filter: $select.search">
-							{{ country.name }}
+							<div data-ng-bind-html="country.name | highlight: $select.search"></div>
 						</data-ui-select-choices>
 					</data-ui-select>
 				</div>
 				<div class="form-group">
 					<label for="state">City/State</label>
-					<data-ui-select data-ng-model="user.state" data-ng-disabled="disabled" style="min-width: 300px;">
+					<data-ui-select data-ng-model="user.state" class="aacc-select-min-width" data-ng-disabled="disabled">
 						<data-ui-select-match placeholder="City / State / County / Province / Region">{{ $select.selected.name }}</data-ui-select-match>
 						<data-ui-select-choices repeat="state.name as state in states | filter: $select.search">
-							{{ state.name }}
+							<div data-ng-bind-html="state.name | highlight: $select.search"></div>
 						</data-ui-select-choices>
 					</data-ui-select>
 				</div>
 				<div class="form-group">
 					<label for="zipcode">ZIP Code</label>
-					<input type="text" id="zipcode" name="zipcode" class="form-control" data-ng-model="user.zipcode" placeholder="ZIP / Postal Code" style="min-width: 300px;">
+					<input type="text" id="zipcode" name="zipcode" class="form-control aacc-select-min-width" data-ng-model="user.zipcode" placeholder="ZIP / Postal Code">
 				</div>
 				<div class="form-group">
 					<label for="website">Website</label>
-					<input type="text" id="website" name="website" class="form-control" data-ng-model="user.website" placeholder="Website" style="min-width: 300px;">
+					<input type="text" id="website" name="website" class="form-control aacc-select-min-width" data-ng-model="user.website" placeholder="Website">
 				</div>
 
 				<div class="text-center form-group">
