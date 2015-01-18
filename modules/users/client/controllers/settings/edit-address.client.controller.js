@@ -74,6 +74,7 @@ void (function() {
 				$scope.submitted = true
 			}
 		}
+
 	}
 	
 })()

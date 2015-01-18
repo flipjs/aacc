@@ -108,6 +108,9 @@ module.exports = function (grunt) {
 			}
 		},
 		ngAnnotate: {
+			options: {
+				singleQuotes: true,
+			},
 			production: {
 				files: {
 					'public/dist/application.js': defaultAssets.client.js
