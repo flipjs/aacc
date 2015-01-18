@@ -5,28 +5,22 @@ void (function() {
 		.factory('CountryStateLookup', CountryStateLookup)
 
 	/* ngInject */
-	function CountryStateLookup($http, $q) {
+	function CountryStateLookup($http) {
 		var service = {
-			// countryStateData: [],
 			getCountryStateData: getCountryStateData
 		}
 
 		return service
 		//////////////
 
-		// pass this to router.resolve to generate data before using it in
+		// pass this to router.resolve to resolve data and then pass to the
 		// controller
 		function getCountryStateData() {
-			var deferred = $q.defer()
-			$http.get('/api/lookup/states', {cache: true})
-			.success(function(data) {
-				// service.countryStateData = data
-				deferred.resolve(data)
-			})
-			.error(function(error) {
-				deferred.reject(error)
-			})
-			return deferred.promise
+			var promise = $http({ method: 'GET', url: '/api/lookup/states', cache: true })
+				.then(function(response) {
+					return response.data
+				})
+			return promise
 		}
 	}
 
