@@ -5,6 +5,7 @@ module.exports = {
 		lib: {
 			css: [
 				'public/lib/bootstrap/dist/css/bootstrap.min.css',
+				'public/vendor/bootswatch/paper/bootstrap.min.css',
 				'public/lib/bootstrap/dist/css/bootstrap-theme.min.css',
 				'public/lib/angular-ui-select/dist/select.min.css',
 				'public/lib/angularjs-toaster/toaster.css',

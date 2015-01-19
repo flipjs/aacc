@@ -36,20 +36,14 @@ void (function() {
 		}
 
 		function generateStateLookup(countryName) {
-			var stateList = []
-
-			countryStateList.some(function(data, idx) {
-				if (data.country.toLowerCase() === countryName.toLowerCase()) {
-					stateList = countryStateList[idx].states.split('|').map(function(state) {
-						return { name: state }
-					})
-					// loop breaks when true
-					return true
-				}
-				// loop continues when false
-				return false
+			var idx = $scope.countries.map(function(country) {
+				return country.name
 			})
-			$scope.states = stateList
+			.indexOf(countryName)
+			
+			$scope.states = countryStateList[idx].states.split('|').map(function(state) {
+				return { name: state }
+			})
 		}
 
 		function updateStateLookup(countryName) {
