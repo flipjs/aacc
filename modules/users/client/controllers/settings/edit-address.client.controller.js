@@ -35,20 +35,17 @@ void (function() {
 			}, $scope.countries)
 		}
 
-		function generateStateLookup(countryName) {
-			var idx = $scope.countries.map(function(country) {
-				return country.name
-			})
-			.indexOf(countryName)
-			
-			$scope.states = countryStateList[idx].states.split('|').map(function(state) {
+		function generateStateLookup(country) {
+			$scope.states = countryStateList.filter(function(e) {
+				return e.country.toLowerCase() === country.toLowerCase()
+			})[0].states.split('|').map(function(state) {
 				return { name: state }
 			})
 		}
 
-		function updateStateLookup(countryName) {
+		function updateStateLookup(country) {
 			$scope.user.state = ''
-			generateStateLookup(countryName)
+			generateStateLookup(country)
 		}
 
 		function updateUserProfile(isValid) {
